@@ -1,0 +1,1 @@
+set(ORDERED_PATHS "/opt/ros/noetic/lib;/home/abracar/documents/robotics/turtle_sim/devel/lib")

@@ -1,0 +1,2 @@
+aws-robomaker-small-warehouse-world:move_bot:obstacle-avoidance-turtlebot:turtlebot3_simulations/turtlebot3_fake:turtlebot3_simulations/turtlebot3_gazebo:turtlebot3_simulations/turtlebot3_simulations
+-DCATKIN_DEVEL_PREFIX=/home/abracar/documents/robotics/turtle_script/devel -DCMAKE_INSTALL_PREFIX=/home/abracar/documents/robotics/turtle_script/install -G Unix Makefiles

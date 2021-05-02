@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+# generated from catkin/python/catkin/environment_cache.py
+
+# based on a snapshot of the environment before and after calling the setup script
+# it emulates the modifications of the setup script without recurring computations
+
+# new environment variables
+
+# modified environment variables
+export CMAKE_PREFIX_PATH="/home/abracar/documents/robotics/turtle_script/devel:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/abracar/documents/robotics/turtle_script/devel/lib:$LD_LIBRARY_PATH"
+export PATH='/opt/ros/noetic/bin:/home/abracar/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/WindowsApps/CanonicalGroupLimited.Ubuntu20.04onWindows_2004.2021.222.0_x64__79rhkp1fndgsc:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/libnvvp:/mnt/c/Java/jdk-9.0.4/bin:/mnt/c/ProgramData/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Intel/iCLS Client/:/mnt/c/Program Files/Intel/iCLS Client/:/mnt/c/windows/system32:/mnt/c/windows:/mnt/c/Program Files/Graphviz 2.44.1/bin/dot.exe:/mnt/c/windows/System32/Wbem:/mnt/c/windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/Program Files/dotnet/:/mnt/c/Java/jre-9.0.4/bin:/mnt/c/Program Files (x86)/Wolfram Research/WolframScript/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/MATLAB/R2019a/bin:/mnt/c/Users/Abrac/AppData/Local/Programs/Python/Python36/Scripts:/mnt/c/users/abrac/appdata/local/programs/python/python36/lib/site-packages:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2020.3.1/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Git LFS:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Microsoft VS Code/bin:/mnt/c/Users/Abrac/AppData/Local/Programs/Python/Python38-32/Scripts/:/mnt/c/Users/Abrac/AppData/Local/Programs/Python/Python38-32/:/mnt/c/Users/Abrac/AppData/Local/Programs/Python/Python36/:/mnt/c/Users/Abrac/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Python 3.6:/mnt/c/Users/Abrac/AppData/Local/atom/bin:/mnt/c/Users/Abrac/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Abrac/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/Abrac/AppData/Roaming/npm:/mnt/c/Program Files/heroku/bin:/snap/bin'
+export PKG_CONFIG_PATH="/home/abracar/documents/robotics/turtle_script/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
+export PWD='/home/abracar/documents/robotics/turtle_script/build'
+export ROSLISP_PACKAGE_DIRECTORIES='/home/abracar/documents/robotics/turtle_script/devel/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/abracar/documents/robotics/turtle_script/src:$ROS_PACKAGE_PATH"

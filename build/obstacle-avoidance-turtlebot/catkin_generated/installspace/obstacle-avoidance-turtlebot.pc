@@ -1,0 +1,8 @@
+prefix=/home/abracar/documents/robotics/turtle_script/install
+
+Name: obstacle-avoidance-turtlebot
+Description: Description of obstacle-avoidance-turtlebot
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
