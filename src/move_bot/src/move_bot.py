@@ -28,17 +28,17 @@ right = False
 left = False
 adjust = False
 stuck = False
+msg = None
+dt = None
 
 
 
 
 
 
-
-
-def callback(msg,dt):
+def callback():
     print('IN CALLBACK')
-    global oriented, obstacle_flag, rdis, turn, corner, count, blocked, left, right, adjust, stuck
+    global oriented, obstacle_flag, rdis, turn, corner, count, blocked, left, right, adjust, stuck, dt, msg
     # if not input_gathered:
     #     input_gather()
     #     input_gathered = True
@@ -70,8 +70,8 @@ def callback(msg,dt):
 
 
     goal = Point()
-    goal.x = 0
-    goal.y = 0
+    goal.x = 3
+    goal.y = 1.5
     desired_pose = 0
     (roll, pitch, yaw) = tf.transformations.euler_from_quaternion([msg.pose.pose.orientation.x, msg.pose.pose.orientation.y, msg.pose.pose.orientation.z, msg.pose.pose.orientation.w])
 
@@ -84,11 +84,11 @@ def callback(msg,dt):
     print("yaw: " + str(yaw))
 
     if not oriented:
-        if abs(angle_to_goal - yaw) < 0.15:
+        if abs(angle_to_goal - yaw) < 0.2:
             oriented = True
         else:
             com.linear.x = 0
-            com.angular.z = 0.2  
+            com.angular.z = 0.4  
     
     
     
@@ -123,11 +123,11 @@ def callback(msg,dt):
                 count = 0
                 print('blocked left')
 
-            if abs(angle_to_goal - yaw) > 0.15:
+            if abs(angle_to_goal - yaw) > 0.2:
                 oriented = False
                 print("1")
             else:
-                com.linear.x = 0.5
+                com.linear.x = 0.2
                 com.angular.z = 0.0
                 print("2")
 
@@ -137,7 +137,7 @@ def callback(msg,dt):
                     com.angular.z = -0.3
                     com.linear.x = 0.0
                 elif count >= 20 and count < 40: #head straight
-                    com.linear.x = 0.5
+                    com.linear.x = 0.2
                     com.angular.z = 0.0
                 else: #turn back right
                     com.angular.z = 0.3
@@ -152,7 +152,7 @@ def callback(msg,dt):
                     com.angular.z = 0.3
                     com.linear.x = 0.0
                 elif count >= 20 and count < 40: #head straight
-                    com.linear.x = 0.5
+                    com.linear.x = 0.2
                     com.angular.z = 0.0
                 else: #turn back right
                     com.angular.z = -0.3
@@ -170,7 +170,7 @@ def callback(msg,dt):
             else:
                 if left:
                     if count < 20: #go straight past corner
-                        com.linear.x = 0.5
+                        com.linear.x = 0.2
                         com.angular.z = 0.0 
 
                     elif count >= 20 and count < 70: #turn left
@@ -178,7 +178,7 @@ def callback(msg,dt):
                         com.angular.z = 0.3
 
                     else: #head straight for a little bit
-                        com.linear.x = 0.5
+                        com.linear.x = 0.2
                         com.angular.z = 0.0
 
                     count += 1
@@ -190,7 +190,7 @@ def callback(msg,dt):
                 
                 else:
                     if count < 20: #go straight past corner
-                        com.linear.x = 0.5
+                        com.linear.x = 0.2
                         com.angular.z = 0.0 
 
                     elif count >= 20 and count < 70: #turn right
@@ -198,7 +198,7 @@ def callback(msg,dt):
                         com.angular.z = -0.3
 
                     else: #head straight for a little bit
-                        com.linear.x = 0.5
+                        com.linear.x = 0.2
                         com.angular.z = 0.0
 
                     count += 1
@@ -215,7 +215,7 @@ def callback(msg,dt):
                 com.linear.x = 0.0
             elif count >= 25:  #head straight
                 com.angular.z = 0.0
-                com.linear.x = 0.5
+                com.linear.x = 0.2
             count+=1
             if count == 50:
                 stuck = False
@@ -284,7 +284,7 @@ def callback(msg,dt):
                     adjust = True
                     count = 0
                 else:
-                    com.linear.x = 0.5
+                    com.linear.x = 0.2
                     com.angular.z = 0.0
                 print("4")
 
@@ -341,7 +341,7 @@ def demo(msg):
         com.linear.x = 0
         com.angular.z = 0.2
     else:
-        com.linear.x = 0.5
+        com.linear.x = 0.2
         com.angular.z = 0.0
 
 
@@ -358,20 +358,34 @@ def demo(msg):
     cmd_vel_pub.publish(com)
 
 
+def odom_callback(odom): #store odom data
+    global msg
+    msg = odom
 
+
+def scan_callback(scan):
+    global dt 
+    dt = scan
+    
+    if msg is not None and dt is not None:
+        callback()
 
 
 if __name__ == "__main__":
     print('hello')
     
     rospy.init_node("move_bot", anonymous=True)
-    # rospy.Subscriber('odom',Odometry,demo)
+    rospy.Subscriber('odom',Odometry, odom_callback)
+    rospy.Subscriber('scan', LaserScan, scan_callback)
     # rospy.spin()
 
+    print(dt)
+    if dt is not None and msg is not None:
+        callback()
     
-    odom_sub = message_filters.Subscriber('odom', Odometry)
-    scan_sub = message_filters.Subscriber('scan', LaserScan)
-    ts = message_filters.TimeSynchronizer([odom_sub, scan_sub], 1)
-    ts.registerCallback(callback)
-    print('spin')
+    # odom_sub = message_filters.Subscriber('odom', Odometry)
+    # scan_sub = message_filters.Subscriber('scan', LaserScan)
+    # ts = message_filters.TimeSynchronizer([odom_sub, scan_sub], 1)
+    # ts.registerCallback(callback)
+
     rospy.spin()
